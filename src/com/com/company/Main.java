@@ -13,8 +13,8 @@ public class Main {
         window.setLayout(new BorderLayout());
         window.setLocationRelativeTo(null);
         window.setVisible(true);
-        NicTacToe game = new NicTacToe();
+       NicTacToe game = new NicTacToe();
         window.add(game);
-        //JOptionPane.showMessageDialog(null, "The End");
+
     }
 }

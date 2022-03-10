@@ -37,14 +37,28 @@ public class NicTacToe extends JComponent {
                 field[i][j] = isXTurn ? FIELD_X : FIELD_0;
                 isXTurn = !isXTurn;
                 repaint();
+int res = checkState();
+if (res!=0){
+    if (res==FIELD_0*3){
+        JOptionPane.showMessageDialog(this, "нолики выиграли");
+    }
+    else if(res==FIELD_X*3){
+        JOptionPane.showMessageDialog(this, "нолики выиграли");
+    }
+    else {JOptionPane.showMessageDialog(this, "ничья");}
+
+initGame();
+repaint();
+}
             }
-        };
+        }
+
     }
 
     @Override
     protected void paintComponent(Graphics graphics) {
         super.paintComponent(graphics);
-        graphics.clearRect(0,0, getWidth(), getHeight());
+        graphics.clearRect(0, 0, getWidth(), getHeight());
         drawGrid(graphics);
         drawX0(graphics);
     }
@@ -77,7 +91,7 @@ public class NicTacToe extends JComponent {
         int dh = getHeight() / 3;
         int x = i * dw;
         int y = j * dh;
-        graphics.drawOval(x+ 5 * dw / 100, y, dw * 9 / 18, dh );
+        graphics.drawOval(x + 5 * dw / 100, y, dw * 9 / 18, dh);
 
     }
 
@@ -86,11 +100,49 @@ public class NicTacToe extends JComponent {
             for (int j = 0; j < 3; j++) {
                 if (field[i][j] == FIELD_X) {
                     drawX(i, j, graphics);
-                } else
-                if (field[i][j] == FIELD_0) {
+                } else if (field[i][j] == FIELD_0) {
                     draw0(i, j, graphics);
                 }
             }
         }
     }
-}
+
+    int checkState() {
+        int diag = 0;
+        int diag1 = 0;
+        for (int i = 0; i < 3; i++) {
+            diag += field[i][i];
+            diag1 += field[i][2-i];
+        }
+        if (diag == FIELD_0 * 3 || diag == FIELD_X * 3) {
+            return diag;
+        }
+        if (diag1 == FIELD_0 * 3 || diag1 == FIELD_X * 3) {
+            return diag1;
+        }
+        int check_i;
+        int check_j;
+        boolean hasEmpty = false;
+        for (int i = 0; i < 3; i++) {
+            check_i = 0;
+            check_j = 0;
+            for (int j = 0; j < 3; j++) {
+                if (field[i][j] == 0) {
+                    hasEmpty = true;
+                }
+                check_i += field[i][j];
+                check_j += field[j][i];
+            }
+
+            if (check_i == FIELD_0 * 3 || check_i == FIELD_X * 3) {
+                return check_i;
+            }
+            if (check_j == FIELD_0 * 3 || check_j == FIELD_X * 3) {
+                return check_j;
+            }
+        }
+            if (hasEmpty) return 0;
+            else return -1;
+
+        }
+    }
