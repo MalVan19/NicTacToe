@@ -6,6 +6,7 @@ import java.awt.*;
 public class Main {
 
     public static void main(String[] args) {
+        fwb a = new fwb();
         JOptionPane.showMessageDialog(null, "Игра началась");
         JFrame window = new JFrame("Крестики-нолики");
         window.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -15,6 +16,5 @@ public class Main {
         window.setVisible(true);
        NicTacToe game = new NicTacToe();
         window.add(game);
-
     }
 }

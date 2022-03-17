@@ -29,6 +29,7 @@ public class NicTacToe extends JComponent {
     protected void processMouseEvent(MouseEvent mouseEvent) {
         super.processMouseEvent(mouseEvent);
         if (mouseEvent.getButton() == MouseEvent.BUTTON1) {
+            JOptionPane.showMessageDialog(this, "следующий");
             int x = mouseEvent.getX();
             int y = mouseEvent.getY();
             int i = (int) ((float) x / getWidth() * 3);
@@ -43,7 +44,7 @@ if (res!=0){
         JOptionPane.showMessageDialog(this, "нолики выиграли");
     }
     else if(res==FIELD_X*3){
-        JOptionPane.showMessageDialog(this, "нолики выиграли");
+        JOptionPane.showMessageDialog(this, "крестики выиграли");
     }
     else {JOptionPane.showMessageDialog(this, "ничья");}
 
